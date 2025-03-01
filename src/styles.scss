@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+$red: #e2001a;
+$blue: #001c3a;
+$nav-height: 65px;
+$nav-background: #fff;
+$nav-font-color: $red;
+$link-hover-color: $red;
+$alert-height: 25px;
+:root {
+  font-family: "Outfit", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  min-width: 100vw;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  display: border-box;
+  font-size: 16px;
+  position: relative;
+}
+.alert {
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+  height: $alert-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red;
+  color: white;
+  .link {
+    color: white;
+    font-size: 0.8rem;
+  }
+}
+.header {
+  width: 100%;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $nav-background;
+}
+.nav {
+  padding: 0 40px;
+  height: $nav-height;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      img {
+        width: 140px;
+        height: auto;
+        aspect-ratio: 300/69;
+      }
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        float: left;
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        a {
+          display: block;
+          padding: 0 20px;
+          text-align: center;
+          background: $nav-background;
+          color: $nav-font-color;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+.slider {
+  width: 100%;
+  height: calc(100vh - ($nav-height + $alert-height));
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    background: none;
+    border: 1px solid white;
+    margin: 0 15px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: white;
+  }
+}
