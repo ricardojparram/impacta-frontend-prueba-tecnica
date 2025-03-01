@@ -5,7 +5,15 @@ $nav-height: 65px;
 $nav-background: #fff;
 $nav-font-color: $red;
 $link-hover-color: $red;
-$alert-height: 25px;
+$alert-height: 40px;
+$primary-color: #e30613; // Rojo para los enlaces y acentos
+$dark-color: #0a1e2c; // Color oscuro para el logo
+$white: #ffffff;
+$breakpoint-mobile: 756px;
+@media (min-width: 756px) {
+  $alert-height: 25px;
+}
+
 $invitation-to-scroll-height: 60px;
 :root {
   font-family: "Outfit", serif;
@@ -14,8 +22,6 @@ $invitation-to-scroll-height: 60px;
   font-style: normal;
 }
 body {
-  width: 99dvw;
-  min-height: 100dvh;
   margin: 0;
   padding: 0;
   display: border-box;
@@ -25,7 +31,7 @@ body {
 .alert {
   font-size: 0.9rem;
   margin: 0;
-  padding: 0;
+  padding: 5px 20px;
   height: $alert-height;
   display: flex;
   justify-content: center;
@@ -44,50 +50,216 @@ body {
       font-size: 0.8rem;
     }
   }
+  @media (min-width: 756px) {
+    padding: 0 20px;
+  }
 }
-.header {
-  width: 100%;
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 99999;
-  background-color: $nav-background;
-}
-.nav {
-  padding: 0 40px;
+  left: 0;
   height: $nav-height;
-  nav {
+  width: 100%;
+  background-color: $white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  &-container {
     display: flex;
     justify-content: space-between;
-    .logo {
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  &-logo {
+    a {
+      text-decoration: none;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 10px;
-      img {
-        width: 140px;
-        height: auto;
-        aspect-ratio: 300/69;
-      }
     }
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      li {
-        float: left;
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        a {
-          display: block;
-          padding: 0 20px;
-          text-align: center;
-          background: $nav-background;
-          color: $nav-font-color;
-          text-decoration: none;
+
+    img {
+      width: 140px;
+    }
+  }
+
+  &-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 auto;
+  }
+
+  &-links {
+    display: flex;
+    list-style: none;
+    margin-left: 33%;
+
+    li {
+      margin-left: 1.5rem;
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        font-weight: 500;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: darken($primary-color, 15%);
         }
       }
+    }
+  }
+
+  &-social {
+    display: flex;
+    align-items: center;
+    a {
+      color: $primary-color;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: darken($primary-color, 15%);
+      }
+    }
+  }
+
+  &-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative;
+
+    &-icon,
+    &-icon::before,
+    &-icon::after {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: $primary-color;
+      transition: all 0.3s ease;
+    }
+
+    &-icon {
+      top: 50%;
+      transform: translateY(-50%);
+
+      &::before,
+      &::after {
+        content: "";
+        left: 0;
+      }
+
+      &::before {
+        top: -8px;
+      }
+
+      &::after {
+        bottom: -8px;
+      }
+    }
+
+    &.active {
+      .navbar-toggle-icon {
+        background-color: transparent;
+
+        &::before {
+          top: 0;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          bottom: 0;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .navbar {
+    &-toggle {
+      display: block;
+      z-index: 1001;
+    }
+
+    &-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: $white;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 5rem 2rem 2rem;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 1000;
+
+      &.active {
+        right: 0;
+      }
+    }
+
+    &-links {
+      flex-direction: column;
+      margin-right: 0;
+      width: 100%;
+
+      li {
+        margin: 0;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        &:first-child {
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        a {
+          display: block;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    &-social {
+      margin-top: 2rem;
+      width: 100%;
+      justify-content: center;
+
+      a {
+        margin: 0 1rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }
@@ -125,21 +297,38 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 35%;
+    width: 100vw;
     height: 100%;
     z-index: 5;
     display: flex;
-    background: rgb(226, 0, 26);
+    background: rgb(0, 0, 0);
     background: linear-gradient(
-      90deg,
-      rgba(226, 0, 26, 1) 21%,
-      rgba(0, 0, 0, 0) 100%
+      0deg,
+      rgba(0, 0, 0, 0) 63%,
+      rgba(233, 19, 44, 1) 94%
     );
     h4 {
-      padding: 50px 60px;
-      margin: auto 0 0 0;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 20px 0;
       color: white;
-      font-size: 6rem;
+      font-size: 2rem;
+    }
+    @media (min-width: 756px) {
+      background: rgb(226, 0, 26);
+      background: linear-gradient(
+        90deg,
+        rgba(226, 0, 26, 1) 21%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      width: 35%;
+      h4 {
+        padding: 50px 60px;
+        margin: auto 0 0 0;
+        color: white;
+        font-size: 6rem;
+      }
     }
   }
 }
