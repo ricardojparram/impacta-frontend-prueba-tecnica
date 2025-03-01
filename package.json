@@ -12,6 +12,7 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "lenis": "^1.1.22",
     "normalize.css": "^8.0.1",
     "sass": "^1.85.1",
     "swiper": "^11.2.4"

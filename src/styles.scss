@@ -6,8 +6,8 @@ $nav-background: #fff;
 $nav-font-color: $red;
 $link-hover-color: $red;
 $alert-height: 40px;
-$primary-color: #e30613; // Rojo para los enlaces y acentos
-$dark-color: #0a1e2c; // Color oscuro para el logo
+$primary-color: $red;
+$dark-color: #0a1e2c;
 $white: #ffffff;
 $breakpoint-mobile: 756px;
 @media (min-width: 756px) {

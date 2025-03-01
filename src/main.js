@@ -1,6 +1,17 @@
+import Lenis from "lenis";
+const lenis = new Lenis({
+  lerp: 0.08,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-const swiper = new Swiper(".swiper", {
+new Swiper(".swiper", {
   pagination: {
     el: ".swiper-pagination",
   },
