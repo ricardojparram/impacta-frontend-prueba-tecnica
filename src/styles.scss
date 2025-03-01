@@ -321,10 +321,31 @@ body {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       grid-template-rows: repeat(12, 1fr);
+
+      .client-logo {
+        background-color: #e32120;
+        padding: 24px;
+        height: 128px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .logo-content {
+          color: $white;
+          font-weight: bold;
+          text-align: center;
+          width: 80%;
+        }
+      }
+
       .area-2 {
         grid-column: span 1;
         @media (min-width: 768px) {
           grid-column: span 2;
+        }
+
+        .logo-content {
+          width: 50%;
         }
       }
 
@@ -336,22 +357,6 @@ body {
       @media (min-width: 1024px) {
         grid-template-columns: repeat(7, 1fr);
         grid-template-rows: repeat(2, 1fr);
-      }
-    }
-
-    .client-logo {
-      background-color: #e32120;
-      padding: 24px;
-      height: 128px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .logo-content {
-        color: $white;
-        font-weight: bold;
-        text-align: center;
-        width: 50%;
       }
     }
   }
@@ -639,23 +644,12 @@ body {
             }
           }
         }
+      }
 
-        .logo {
-          margin-top: 50px;
-          text-align: right;
-
-          h2 {
-            font-size: 28px;
-            font-weight: bold;
-
-            .exclamation {
-              color: $accent-color;
-            }
-          }
-
-          .logo-placeholder {
-            display: none;
-          }
+      .logo {
+        margin-top: 50px;
+        img {
+          width: 150px;
         }
       }
     }
